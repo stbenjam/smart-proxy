@@ -12,6 +12,7 @@ module Proxy
   require "rubygems" if USE_GEMS # required for testing
   require "proxy/log"
   require "proxy/util"
+
   require "proxy/tftp"       if SETTINGS.tftp
   require "proxy/puppetca"   if SETTINGS.puppetca
   require "proxy/puppet"     if SETTINGS.puppet
@@ -19,6 +20,7 @@ module Proxy
   require "proxy/dhcp"       if SETTINGS.dhcp
   require "proxy/bmc"        if SETTINGS.bmc
   require "proxy/chefproxy"  if SETTINGS.chefproxy
+  require "proxy/realm"    if SETTINGS.realm
 
   def self.features
     MODULES.collect{|mod| mod if SETTINGS.send mod}.compact

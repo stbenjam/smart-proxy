@@ -35,6 +35,7 @@ class SmartProxy < Sinatra::Base
   require "dhcp_api"      if SETTINGS.dhcp
   require "bmc_api"       if SETTINGS.bmc
   require "chefproxy_api" if SETTINGS.chefproxy
+  require "realm_api"     if SETTINGS.realm
 
   begin
     require "facter"
