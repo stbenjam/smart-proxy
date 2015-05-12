@@ -1,4 +1,5 @@
 require 'templates/handler'
+
 class Proxy::TemplatesApi < Sinatra::Base
   helpers ::Proxy::Helpers
 
@@ -13,9 +14,9 @@ class Proxy::TemplatesApi < Sinatra::Base
     end
   end
 
-  get "/:kind" do |kind|
-    log_halt(500, "Failed to retrieve #{kind} template for #{params[:token]}: ") do
-      Proxy::Templates::Handler.get_template(kind, params[:token], params[:static])
+  get "/*" do
+   log_halt(500, "Failed to retrieve #{params[:splat].first} for #{params[:token]}: ") do
+     Proxy::Templates::Handler.get_template(URI::encode(params[:splat].first), params[:token], params[:static])
     end
   end
 end
